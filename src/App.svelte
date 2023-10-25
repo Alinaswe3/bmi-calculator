@@ -1,1 +1,5 @@
-<h1>BMI Calculator</h1>
+<script lang="ts">
+    import Hero from "./lib/sections/Hero.svelte";
+</script>
+
+<Hero/>
