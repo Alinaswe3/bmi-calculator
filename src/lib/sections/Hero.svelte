@@ -1,5 +1,9 @@
 <script>
     import Input from "../components/Input.svelte";
+
+    let systemSelected = "metric";
+
+    $: console.log(systemSelected);
 </script>
 
 <header class="grid grid-cols-2 justify-between gap-[5rem] relative min-h-fit h-screen pt-[17rem]">
@@ -20,17 +24,28 @@
             </h2>
             <fieldset class="grid grid-cols-2 gap-x-[2.4rem] text-b-md font-semibold" id="units">
                 <div class="flex items-center gap-[1.8rem]">
-                    <input checked id="metric" name="units" type="radio" value="metric"/>
+                    <input bind:group={systemSelected} checked id="metric" name="units" type="radio" value="metric"/>
                     <label for="metric">Metric</label>
                 </div>
                 <div class="flex items-center gap-[1.8rem]">
-                    <input id="imperial" name="units" type="radio" value="imperial"/>
+                    <input bind:group={systemSelected} id="imperial" name="units" type="radio" value="imperial"/>
                     <label for="imperial">Imperial</label>
                 </div>
             </fieldset>
-            <fieldset class="grid grid-cols-2 gap-x-[2.4rem] font-normal text-b-sm text-dark-electric-blue">
-                <Input dimension="Height" id="height" unit="cm"/>
-                <Input dimension="Weight" id="weight" unit="kg"/>
+            <fieldset
+                    class="grid grid-cols-2 items-center justify-center gap-[2.4rem] font-normal text-b-sm text-dark-electric-blue">
+                {#if systemSelected === "metric"}
+                    <Input dimension="Height" id="height" unit="cm"/>
+                    <Input dimension="Weight" id="weight" unit="kg"/>
+                {:else }
+
+                    <Input dimension="Height" id="height" unit="ft"/>
+                    <Input dimension="Height" {systemSelected} id="weight" unit="in"/>
+
+                    <Input dimension="Weight" id="weight" unit="st"/>
+                    <Input dimension="Weight" {systemSelected} id="weight" unit="lbs"/>
+
+                {/if}
             </fieldset>
         </form>
         <div class="results p-[3.2rem] text-white grid grid-cols-2 gap-[3.2rem] items-center">
@@ -67,8 +82,8 @@
         appearance: none;
         background-color: #fff;
         margin: 0;
-        width: 3rem;
-        height: 3rem;
+        min-width: 3rem;
+        min-height: 3rem;
         border: 1px solid #D8E2E7;
         border-radius: 50%;
         display: grid;

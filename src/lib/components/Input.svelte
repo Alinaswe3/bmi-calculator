@@ -2,11 +2,17 @@
     export let unit: string;
     export let dimension: string;
 
+    export let systemSelected: string = "metric";
+
     export let id: string;
 </script>
 
 <div class="flex gap-[0.8rem] flex-col">
-    <label for={id}>{dimension}</label>
+    {#if systemSelected === "metric"}
+        <label for={id}>{dimension}</label>
+    {:else }
+        <label class="hide-text" for={id}>{dimension}</label>
+    {/if}
     <div class="relative text-h-md">
         <input class="py-[2rem] pl-[2rem] pr-[8rem] hover:border-blue transition-all duration-200 appearance-none text-gunmetal w-full outline-none rounded-[12px] border border-borders"
                id={id}
@@ -18,5 +24,8 @@
     </div>
 </div>
 
-
-
+<style>
+    .hide-text {
+        visibility: hidden;
+    }
+</style>
