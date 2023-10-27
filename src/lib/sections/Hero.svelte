@@ -1,3 +1,7 @@
+<script>
+    import Input from "../components/Input.svelte";
+</script>
+
 <header class="grid grid-cols-2 justify-between gap-[5rem] relative min-h-fit h-screen pt-[17rem]">
     <div class="pt-[10rem]">
         <h1 class="tracking-[-3.2px] text-h-xl font-semibold leading-heading mb-[3.5rem] text-gunmetal">Body Mass<br/>Index
@@ -25,27 +29,8 @@
                 </div>
             </fieldset>
             <fieldset class="grid grid-cols-2 gap-x-[2.4rem] font-normal text-b-sm text-dark-electric-blue">
-                <div class="flex gap-[0.8rem] flex-col">
-                    <label for="height">Height</label>
-                    <div class="input-container flex py-[2rem] text-h-md px-[2.4rem] gap-[2.4rem] rounded-[12px] border border-borders">
-                        <input class="appearance-none text-gunmetal w-full outline-none" id="height"
-                               min="0"
-                               placeholder="0"
-                               step="0.1"
-                               type="number"/>
-                        <span class="font-semibold text-blue tracking-[-1.2px] text-h-md">cm</span>
-                    </div>
-                </div>
-                <div class="flex gap-[0.8rem] flex-col">
-                    <label for="weight">Weight</label>
-                    <div class="input-container flex py-[2rem] text-h-md px-[2.4rem] gap-[2.4rem] rounded-[12px] border border-borders">
-                        <input class="appearance-none text-gunmetal w-full outline-none" id="weight" min="0"
-                               placeholder="0"
-                               step="0.1"
-                               type="number"/>
-                        <span class="font-semibold text-blue tracking-[-1.2px] text-h-md">kg</span>
-                    </div>
-                </div>
+                <Input dimension="Height" id="height" unit="cm"/>
+                <Input dimension="Weight" id="weight" unit="kg"/>
             </fieldset>
         </form>
         <div class="results p-[3.2rem] text-white grid grid-cols-2 gap-[3.2rem] items-center">
@@ -63,7 +48,7 @@
             </p>
         </div>
     </div>
-    <img alt="Logo" class="absolute top-[7rem] left-0 h-[6.4rem] w-[6.4rem]" src="../../assets/images/logo.svg"/>
+    <img alt="Logo" class="absolute top-[7rem] left-0 h-[6.4rem] w-[6.4rem]" src="/images/logo.svg"/>
 </header>
 
 <style>
@@ -116,14 +101,5 @@
     }
 
     /***********************/
-
-    .input-container {
-        transition: 200ms border ease-in;
-        cursor: pointer;
-    }
-
-    .input-container:has(input:focus) {
-        border: 1px solid #345FF6;
-    }
 
 </style>
