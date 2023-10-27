@@ -12,7 +12,7 @@
     .container {
         max-width: 1160px;
         margin: auto;
-        padding: 0 2rem;
+        padding: 0 4rem;
     }
 
     #hero-overlay {
@@ -23,6 +23,12 @@
         width: 65%;
         border-radius: 0 0 35px 35px;
         background-image: linear-gradient(290deg, #D6E6FE 0%, rgba(214, 252, 254, 0.00) 100%);
+    }
+
+    @media (max-width: 62.5em) {
+        #hero-overlay {
+            width: 100%;
+        }
     }
 
 </style>

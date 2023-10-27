@@ -3,11 +3,10 @@
 
     let systemSelected = "metric";
 
-    $: console.log(systemSelected);
 </script>
 
-<header class="grid grid-cols-2 justify-between gap-[5rem] relative min-h-fit h-screen pt-[17rem]">
-    <div class="pt-[10rem]">
+<header class="grid grid-cols-2 tablet:grid-cols-1 justify-between gap-[5rem] relative min-h-fit h-screen pt-[17rem] tablet:pt-[6rem]">
+    <div class="pt-[10rem] tablet:text-center">
         <h1 class="tracking-[-3.2px] text-h-xl font-semibold leading-heading mb-[3.5rem] text-gunmetal">Body Mass<br/>Index
             Calculator
         </h1>
@@ -63,7 +62,9 @@
             </p>
         </div>
     </div>
-    <img alt="Logo" class="absolute top-[7rem] left-0 h-[6.4rem] w-[6.4rem]" src="/images/logo.svg"/>
+    <img alt="Logo"
+         class="absolute top-[7rem] tablet:top-[4rem] left-0 tablet:left-1/2 tablet:-translate-x-1/2 h-[6.4rem] w-[6.4rem]"
+         src="/images/logo.svg"/>
 </header>
 
 <style>
