@@ -1,7 +1,53 @@
-<script>
+<script lang="ts">
     import Input from "../components/Input.svelte";
 
     let systemSelected = "metric";
+
+    // BMI variables
+    let bmiValue: number = 0;
+    let bmiDiagnosis: string = "";
+
+    // BMI calculator functions
+    const calcBMIInMetric = (heightIncm: number, weightInkg: number): number => {
+        if (!heightIncm || !weightInkg) return 0;
+        const height: number = heightIncm / 100;
+        const bmi: number = (weightInkg / (height * height));
+        return Math.round(bmi * 10) / 10;
+    }
+
+    const calcBMIInImperial = (heightInft: number, heightInin: number, weightInst: number, weightInlbs: number): number => {
+        if (!heightInin || !heightInft || !weightInst || !weightInlbs) return 0;
+        const height: number = (heightInft * 12) + heightInin;
+        const weight: number = (weightInst * 14) + weightInlbs;
+        const bmi: number = ((weight) / (height * height)) * 703
+        return Math.round(bmi * 10) / 10;
+    }
+
+    // Heights
+
+    let hIncm: number;
+    let hInft: number;
+    let hInin: number;
+
+    // Weights
+    let wInkg: number;
+    let wInlbs: number;
+    let wInst: number;
+
+    // Conversions
+    $: {
+        if (systemSelected === "metric") {
+            bmiValue = calcBMIInMetric(hIncm, wInkg);
+        } else {
+            bmiValue = calcBMIInImperial(hInft, hInin, wInst, wInlbs)
+        }
+
+        if (bmiValue < 18.5) bmiDiagnosis = "underweight";
+        else if (bmiValue > 18.5 && bmiValue < 24.9) bmiDiagnosis = "a healthy weight";
+        else if (bmiValue > 25 && bmiValue < 29.9) bmiDiagnosis = "overweight";
+        else bmiDiagnosis = "obese";
+
+    }
 
 </script>
 
@@ -34,15 +80,15 @@
             <fieldset
                     class="grid grid-cols-2 items-center justify-center gap-[2.4rem] font-normal text-b-sm text-dark-electric-blue">
                 {#if systemSelected === "metric"}
-                    <Input dimension="Height" id="height" unit="cm"/>
-                    <Input dimension="Weight" id="weight" unit="kg"/>
+                    <Input bind:value={hIncm} dimension="Height" id="height" unit="cm"/>
+                    <Input bind:value={wInkg} dimension="Weight" id="weight" unit="kg"/>
                 {:else }
 
-                    <Input dimension="Height" id="height" unit="ft"/>
-                    <Input dimension="Height" {systemSelected} id="weight" unit="in"/>
+                    <Input bind:value={hInft} dimension="Height" id="height" unit="ft"/>
+                    <Input bind:value={hInin} dimension="Height" {systemSelected} id="weight" unit="in"/>
 
-                    <Input dimension="Weight" id="weight" unit="st"/>
-                    <Input dimension="Weight" {systemSelected} id="weight" unit="lbs"/>
+                    <Input bind:value={wInst} dimension="Weight" id="weight" unit="st"/>
+                    <Input bind:value={wInlbs} dimension="Weight" {systemSelected} id="weight" unit="lbs"/>
 
                 {/if}
             </fieldset>
@@ -53,12 +99,12 @@
                     Your BMI is...
                 </span>
                 <span class="text-h-xl ">
-                    23.4
+                    {bmiValue}
                 </span>
             </p>
             <p class="font-normal text-b-sm leading-body">
-                Your BMI suggests you’re a healthy weight.
-                Your ideal weight is between 63.3kgs - 85.2kgs.
+                {` Your BMI suggests you’re ${bmiDiagnosis}.
+                    Your ideal weight is between 63.3kgs - 85.2kgs.`}
             </p>
         </div>
     </div>

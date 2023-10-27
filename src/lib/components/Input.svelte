@@ -5,6 +5,8 @@
     export let systemSelected: string = "metric";
 
     export let id: string;
+
+    export let value: number;
 </script>
 
 <div class="flex gap-[0.8rem] flex-col">
@@ -14,7 +16,8 @@
         <label class="hide-text" for={id}>{dimension}</label>
     {/if}
     <div class="relative text-h-md">
-        <input class="py-[2rem] pl-[2rem] pr-[8rem] hover:border-blue transition-all duration-200 appearance-none text-gunmetal w-full outline-none rounded-[12px] border border-borders"
+        <input bind:value
+               class="py-[2rem] pl-[2rem] pr-[8rem] hover:border-blue transition-all duration-200 appearance-none text-gunmetal w-full outline-none rounded-[12px] border border-borders"
                id={id}
                min="0"
                placeholder="0"
