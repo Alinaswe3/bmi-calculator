@@ -2,12 +2,14 @@
     import Hero from "./lib/sections/Hero.svelte";
     import About from "./lib/sections/About.svelte";
     import Features from "./lib/sections/Features.svelte";
+    import Limitations from "./lib/sections/Limitations.svelte";
 </script>
 
 <main class="container">
     <Hero/>
     <About/>
     <Features/>
+    <Limitations/>
 </main>
 <div id="hero-overlay"></div>
 

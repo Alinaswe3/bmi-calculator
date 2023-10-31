@@ -1,5 +1,5 @@
 <script>
-    import Feature from "./Feature.svelte";
+    import Feature from "../components/Feature.svelte";
 </script>
 
 <section
