@@ -51,7 +51,7 @@
 
 </script>
 
-<header class="grid grid-cols-2 tablet:grid-cols-1 justify-between gap-[5rem] relative min-h-fit h-screen pt-[17rem] tablet:pt-[6rem]">
+<header class="grid grid-cols-2 tablet:grid-cols-1 justify-between gap-[5rem] relative min-h-screen h-fit pt-[17rem] tablet:pt-[6rem]">
     <div class="pt-[10rem] tablet:text-center">
         <h1 class="tracking-[-3.2px] text-h-xl font-semibold leading-heading mb-[3.5rem] text-gunmetal">Body Mass<br/>Index
             Calculator

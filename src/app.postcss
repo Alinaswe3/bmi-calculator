@@ -4,6 +4,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+
 html {
 font-size: 62.5%;
 }
@@ -17,4 +19,13 @@ font-size: 55%;
 body {
 font-family: 'Inter', sans-serif;
 }
+}
+
+@layer components {
+.heading {
+@apply text-gunmetal font-semibold leading-heading;
+}
+}
+
+
 
