@@ -15,6 +15,6 @@
             regular physical activity, ideally about 30 minutes daily for five days a week.
         </p>
     </div>
-    <img alt="A curved line decoration" class="absolute top-[-6rem] right-[3rem]"
+    <img alt="A curved line decoration" class="tablet:hidden absolute top-[-6rem] right-[3rem]"
          src="/images/pattern-curved-line-left.svg"/>
 </section>
