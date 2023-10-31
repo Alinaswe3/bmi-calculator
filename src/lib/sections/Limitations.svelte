@@ -2,8 +2,8 @@
     import Limit from "../components/Limit.svelte";
 </script>
 
-<section class="grid grid-cols-12 gap-[3.2rem]">
-    <div class="col-span-6">
+<section class="grid grid-cols-12 gap-[3.2rem] tablet:justify-items-center">
+    <div class="col-span-6 tablet:col-span-12 tablet:text-center">
         <h2 class="mb-[3.5rem] heading text-[3.2rem] tracking-[-1.6px]">Limitations of BMI</h2>
         <p class="text-b-md text-dark-electric-blue">
             Although BMI is often a practical indicator of healthy weight, it is not suited for every person. Specific
@@ -11,7 +11,7 @@
             beneficial to use.
         </p>
     </div>
-    <div class="col-start-8 col-end-12">
+    <div class="col-start-8 col-end-12 tablet:col-span-6 tablet:col-start-auto">
         <Limit iconUrl="/images/icon-gender.svg">
             <svelte:fragment slot="header">
                 Adequate sleep
@@ -23,7 +23,7 @@
             </svelte:fragment>
         </Limit>
     </div>
-    <div class="col-start-5 col-span-4">
+    <div class="col-start-5 col-span-4 tablet:col-span-6 tablet:col-start-auto">
 
         <Limit iconUrl="/images/icon-age.svg">
             <svelte:fragment slot="header">
@@ -35,7 +35,7 @@
             </svelte:fragment>
         </Limit>
     </div>
-    <div class="col-start-9 col-span-4">
+    <div class="col-start-9 col-span-4 tablet:col-span-6 tablet:col-start-auto">
         <Limit iconUrl="/images/icon-muscle.svg">
             <svelte:fragment slot="header">
                 Muscle
@@ -47,7 +47,7 @@
             </svelte:fragment>
         </Limit>
     </div>
-    <div class="col-start-3 col-span-4">
+    <div class="col-start-3 col-span-4 tablet:col-span-6 tablet:col-start-auto">
         <Limit iconUrl="/images/icon-pregnancy.svg">
             <svelte:fragment slot="header">
                 Pregnancy
@@ -58,8 +58,7 @@
             </svelte:fragment>
         </Limit>
     </div>
-    <div class="col-start-7 col-span-4">
-
+    <div class="col-start-7 col-span-4 tablet:col-span-6 tablet:col-start-auto">
         <Limit iconUrl="/images/icon-race.svg">
             <svelte:fragment slot="header">
                 Race
