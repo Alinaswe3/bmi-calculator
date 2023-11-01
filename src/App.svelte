@@ -16,8 +16,9 @@
 <style>
     .container {
         max-width: 1160px;
-        margin: auto auto 7rem;
+        margin: 0 auto;
         padding: 0 4rem;
+        overflow-x: hidden;
         display: grid;
         grid-template-columns: 1fr;
         gap: 9rem;

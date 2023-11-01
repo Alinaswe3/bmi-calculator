@@ -2,7 +2,7 @@
     import Limit from "../components/Limit.svelte";
 </script>
 
-<section class="grid grid-cols-12 gap-[3.2rem] tablet:justify-items-center">
+<section class="grid grid-cols-12 gap-[3.2rem] tablet:justify-items-center mb-[7rem]">
     <div class="col-span-6 tablet:col-span-12 tablet:text-center">
         <h2 class="mb-[3.5rem] heading text-[3.2rem] tracking-[-1.6px]">Limitations of BMI</h2>
         <p class="text-b-md text-dark-electric-blue">
