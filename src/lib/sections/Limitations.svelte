@@ -11,7 +11,7 @@
             beneficial to use.
         </p>
     </div>
-    <div class="col-start-8 col-end-12 tablet:col-span-6 tablet:col-start-auto">
+    <div class="col-start-8 col-end-12 tablet:col-span-6 tablet:col-start-auto mobile:col-span-12">
         <Limit iconUrl="/images/icon-gender.svg">
             <svelte:fragment slot="header">
                 Adequate sleep
@@ -23,7 +23,7 @@
             </svelte:fragment>
         </Limit>
     </div>
-    <div class="col-start-5 col-span-4 tablet:col-span-6 tablet:col-start-auto">
+    <div class="col-start-5 col-span-4 tablet:col-span-6 tablet:col-start-auto mobile:col-span-12">
 
         <Limit iconUrl="/images/icon-age.svg">
             <svelte:fragment slot="header">
@@ -35,7 +35,7 @@
             </svelte:fragment>
         </Limit>
     </div>
-    <div class="col-start-9 col-span-4 tablet:col-span-6 tablet:col-start-auto">
+    <div class="col-start-9 col-span-4 tablet:col-span-6 tablet:col-start-auto mobile:col-span-12">
         <Limit iconUrl="/images/icon-muscle.svg">
             <svelte:fragment slot="header">
                 Muscle
@@ -47,7 +47,7 @@
             </svelte:fragment>
         </Limit>
     </div>
-    <div class="col-start-3 col-span-4 tablet:col-span-6 tablet:col-start-auto">
+    <div class="col-start-3 col-span-4 tablet:col-span-6 tablet:col-start-auto mobile:col-span-12">
         <Limit iconUrl="/images/icon-pregnancy.svg">
             <svelte:fragment slot="header">
                 Pregnancy
@@ -58,7 +58,7 @@
             </svelte:fragment>
         </Limit>
     </div>
-    <div class="col-start-7 col-span-4 tablet:col-span-6 tablet:col-start-auto">
+    <div class="col-start-7 col-span-4 tablet:col-span-6 tablet:col-start-auto mobile:col-span-12">
         <Limit iconUrl="/images/icon-race.svg">
             <svelte:fragment slot="header">
                 Race

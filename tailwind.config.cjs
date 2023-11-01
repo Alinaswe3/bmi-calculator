@@ -4,7 +4,9 @@ const config = {
 
     theme: {
         screens: {
-            tablet: {max: "69em"}
+            tablet: {max: "69em"},
+            mobile: {max: "38em"},
+            sm: {max: "24em"}
         },
         extend: {
             colors: {

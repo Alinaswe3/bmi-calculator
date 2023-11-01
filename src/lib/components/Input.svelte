@@ -17,7 +17,7 @@
     {/if}
     <div class="relative text-h-md">
         <input bind:value
-               class="py-[2rem] pl-[2rem] pr-[8rem] hover:border-blue transition-all duration-200 appearance-none text-gunmetal w-full outline-none rounded-[12px] border border-borders"
+               class="py-[2rem] pl-[2rem] pr-[8rem] tablet:py-[1rem] tablet:pl-[1rem] tablet:pr-[6rem] hover:border-blue transition-all duration-200 appearance-none text-gunmetal w-full outline-none rounded-[12px] border border-borders"
                id={id}
                min="0"
                placeholder="0"

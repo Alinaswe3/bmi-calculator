@@ -62,7 +62,7 @@
             overall health and well-being.
         </p>
     </div>
-    <div class="form-container flex flex-col gap-[3.2rem] p-[3.2rem] bg-white rounded-[1.6rem] h-fit ">
+    <div class="form-container flex flex-col gap-[3.2rem] p-[3.2rem] tablet:p-[2rem] sm:p-[1rem] bg-white rounded-[1.6rem] h-fit ">
         <form class="flex flex-col gap-[3.2rem] ">
             <h2 class="text-[2.4rem] font-semibold tracking-[-1.2px]">
                 Enter your details below
@@ -93,7 +93,7 @@
                 {/if}
             </fieldset>
         </form>
-        <div class="results p-[3.2rem] text-white grid grid-cols-2 gap-[3.2rem] items-center">
+        <div class="results p-[3.2rem] text-white grid grid-cols-2 sm:grid-cols-1 gap-[3.2rem] sm:gap-[1.6rem] items-center sm:rounded-0">
             <p class="flex flex-col gap-[0.8rem] font-semibold">
                 <span class="text-b-md">
                     Your BMI is...
@@ -121,6 +121,12 @@
     .results {
         border-radius: 100px 999px 999px 100px;
         background: linear-gradient(90deg, #345FF6 0%, #587DFF 100%);
+    }
+
+    @media (max-width: 24em) {
+        .results {
+            border-radius: 16px;
+        }
     }
 
     /* Custom Radio Button */

@@ -16,11 +16,18 @@
 <style>
     .container {
         max-width: 1160px;
-        margin: auto;
+        margin: auto auto 7rem;
         padding: 0 4rem;
         display: grid;
         grid-template-columns: 1fr;
         gap: 9rem;
+    }
+
+    @media (max-width: 38em) {
+        .container {
+            padding: 0 1.5rem;
+            gap: 7rem;
+        }
     }
 
     #hero-overlay {

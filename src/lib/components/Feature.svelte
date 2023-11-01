@@ -2,8 +2,8 @@
     export let iconUrl: string;
 </script>
 
-<div class="flex flex-col gap-[4.6rem] tablet:gap-[4rem] tablet:flex-row">
-    <figure class="w-[6.4rem] h-[6.4rem] rounded-[50%] overflow-hidden">
+<div class="flex flex-col gap-[4.6rem] tablet:gap-[4rem] tablet:flex-row sm:flex-col sm:gap-[2rem]">
+    <figure class="min-w-[6.4rem] min-h-[6.4rem] w-[6.4rem] h-[6.4rem] rounded-[50%] overflow-hidden">
         <img alt="Feature icon" class="w-full h-full" src={iconUrl}/>
     </figure>
     <div class="flex flex-col gap-[2.4rem]">

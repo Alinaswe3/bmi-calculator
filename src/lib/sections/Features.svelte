@@ -3,7 +3,7 @@
 </script>
 
 <section
-        class="relative grid grid-cols-3 gap-[3.2rem] py-[9.6rem] tablet:grid-cols-1 tablet:gap-[4rem]">
+        class="relative grid grid-cols-3 gap-[3.2rem] py-[9.6rem] tablet:py-[7.2rem] tablet:grid-cols-1 tablet:gap-[4rem] sm:gap-[4.6rem]">
     <Feature iconUrl="/images/icon-eating.svg">
         <svelte:fragment slot="header">
             Healthy eating
