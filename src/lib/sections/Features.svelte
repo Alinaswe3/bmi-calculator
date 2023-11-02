@@ -42,12 +42,24 @@
         border-bottom-right-radius: 35px;
         border-top-right-radius: 35px;
         position: absolute;
-        width: 82vw;
-        min-width: 105%;
+        width: 86vw;
+        min-width: 100%;
         height: 100%;
         top: 0;
         left: 0;
         opacity: 0.25;
         background: var(--Gradient-1, linear-gradient(290deg, #D6E6FE 0%, rgba(214, 252, 254, 0.00) 100%));
+    }
+
+    @media (max-width: 69em) {
+        .background {
+            width: 0;
+        }
+    }
+
+    @media (max-width: 38em) {
+        .background {
+            border-radius: 0;
+        }
     }
 </style>
