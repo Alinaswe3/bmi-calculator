@@ -2,25 +2,51 @@
     import Input from "../components/Input.svelte";
 
     let systemSelected = "metric";
+    const HEALTHY_LOWER_LIMIT = 18.5;
+    const HEALTHY_UPPER_LIMIT = 24.9;
+    const OVERWEIGHT_LOWER_LIMIT = 25;
+    const OVERWEIGHT_UPPER_LIMIT = 29.9;
 
     // BMI variables
     let bmiValue: number = 0;
     let bmiDiagnosis: string = "";
+
+    // Utility functions
+    const roundOff = (value: number, digits: number): number => {
+        return Math.round(value * Math.pow(10, digits)) / Math.pow(10, digits);
+    }
 
     // BMI calculator functions
     const calcBMIInMetric = (heightIncm: number, weightInkg: number): number => {
         if (!heightIncm || !weightInkg) return 0;
         const height: number = heightIncm / 100;
         const bmi: number = (weightInkg / (height * height));
-        return Math.round(bmi * 10) / 10;
+        return roundOff(bmi, 1);
     }
 
     const calcBMIInImperial = (heightInft: number, heightInin: number, weightInst: number, weightInlbs: number): number => {
         if (!heightInin || !heightInft || !weightInst || !weightInlbs) return 0;
-        const height: number = (heightInft * 12) + heightInin;
-        const weight: number = (weightInst * 14) + weightInlbs;
+        const height: number = convertImperial(heightInft, 12, heightInin);
+        const weight: number = convertImperial(weightInst, 14, weightInlbs);
         const bmi: number = ((weight) / (height * height)) * 703
-        return Math.round(bmi * 10) / 10;
+        return roundOff(bmi, 1);
+    }
+
+    const convertImperial = (value: number, unit: number, additional: number): number => {
+        return (value * unit) + additional;
+    }
+
+    const calcIdealWeight = (limit: number, height: number): number => {
+        return limit * Math.pow(height, 2);
+    }
+
+    const calcIdealWeightInImperial = (lowerLimit: number, upperLimit: number, height: number, additionalHeight: number): string => {
+        const convertedHeight = convertImperial(height, 12, additionalHeight);
+        const lowLimit = calcIdealWeight(lowerLimit, convertedHeight) / 703;
+        const upLimit = calcIdealWeight(upperLimit, convertedHeight) / 703;
+        const addPoundsLower = roundOff(lowerLimit % 14, 0);
+        const addPoundsUpper = roundOff(upperLimit % 14, 0);
+        return `${roundOff(lowLimit / 14, 0)}st ${addPoundsLower}lbs - ${roundOff(upLimit / 14, 0)}st ${addPoundsUpper}lbs`
     }
 
     // Heights
@@ -42,9 +68,9 @@
             bmiValue = calcBMIInImperial(hInft, hInin, wInst, wInlbs)
         }
 
-        if (bmiValue < 18.5) bmiDiagnosis = "underweight";
-        else if (bmiValue > 18.5 && bmiValue < 24.9) bmiDiagnosis = "a healthy weight";
-        else if (bmiValue > 25 && bmiValue < 29.9) bmiDiagnosis = "overweight";
+        if (bmiValue < HEALTHY_LOWER_LIMIT) bmiDiagnosis = "underweight";
+        else if (bmiValue > HEALTHY_LOWER_LIMIT && bmiValue < HEALTHY_UPPER_LIMIT) bmiDiagnosis = "a healthy weight";
+        else if (bmiValue > OVERWEIGHT_LOWER_LIMIT && bmiValue < OVERWEIGHT_UPPER_LIMIT) bmiDiagnosis = "overweight";
         else bmiDiagnosis = "obese";
 
     }
@@ -93,20 +119,44 @@
                 {/if}
             </fieldset>
         </form>
-        <div class="results p-[3.2rem] text-white grid grid-cols-2 sm:grid-cols-1 gap-[3.2rem] sm:gap-[1.6rem] items-center sm:rounded-0">
-            <p class="flex flex-col gap-[0.8rem] font-semibold">
+        {#if bmiValue === 0}
+            <p class="results flex flex-col gap-[1.6rem]">
+                <span class="text-h-md tracking-[-1.2px] font-semibold">Welcome!</span>
+                <span class="text-b-sm leading-body">Enter your height and weight and you’ll see your BMI result here</span>
+            </p>
+        {:else }
+            <div class="results grid grid-cols-2 sm:grid-cols-1 gap-[2.8rem] sm:gap-[1.6rem] items-center sm:rounded-0">
+                <p class="flex flex-col gap-[0.8rem] font-semibold">
                 <span class="text-b-md">
                     Your BMI is...
                 </span>
-                <span class="text-h-xl ">
-                    {bmiValue}
+                    <span class="text-h-xl ">
+                    {bmiValue.toFixed(1)}
                 </span>
-            </p>
-            <p class="font-normal text-b-sm leading-body">
-                {` Your BMI suggests you’re ${bmiDiagnosis}.
-                    Your ideal weight is between 63.3kgs - 85.2kgs.`}
-            </p>
-        </div>
+                </p>
+                <p class="font-normal text-b-sm leading-body">
+                    {` Your BMI suggests you’re `}
+                    <strong>
+                        {bmiDiagnosis}.
+                    </strong>
+                    {#if bmiValue > HEALTHY_LOWER_LIMIT && bmiValue < HEALTHY_UPPER_LIMIT}
+                        {#if systemSelected === "metric"}
+                            Your ideal weight is
+                            <strong>
+                                {`${roundOff(calcIdealWeight(HEALTHY_LOWER_LIMIT, hIncm / 100), 1)}kgs - ${roundOff(calcIdealWeight(HEALTHY_UPPER_LIMIT, hIncm / 100), 1)}kgs`}
+                            </strong>
+                        {:else}
+                            Your ideal weight is
+                            <strong>
+                                {`${calcIdealWeightInImperial(HEALTHY_LOWER_LIMIT, HEALTHY_UPPER_LIMIT, hInft, hInin)}`}
+                            </strong>
+                        {/if}
+                    {:else}
+                        You are advised to seek additional health support from a certified health professional
+                    {/if}
+                </p>
+            </div>
+        {/if}
     </div>
     <img alt="Logo"
          class="absolute top-[7rem] tablet:top-[4rem] left-0 tablet:left-1/2 tablet:-translate-x-1/2 h-[6.4rem] w-[6.4rem]"
@@ -119,8 +169,16 @@
     }
 
     .results {
+        color: #fff;
+        padding: 3.2rem;
         border-radius: 100px 999px 999px 100px;
         background: linear-gradient(90deg, #345FF6 0%, #587DFF 100%);
+    }
+
+    @media (max-width: 38em) {
+        .results {
+            padding: 2.4rem;
+        }
     }
 
     @media (max-width: 24em) {
